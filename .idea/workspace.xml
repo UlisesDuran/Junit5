@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="5d1d5fd8-1ad8-4d31-a592-a096a8edefb3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/uduran/junit5app/ejemplos/Cuenta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/uduran/junit5app/ejemplos/Cuenta.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/uduran/junit5app/ejemplos/CuentaTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/uduran/junit5app/ejemplos/CuentaTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -65,7 +66,7 @@
       <recent name="com.uduran.junit5app.ejemplos" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CuentaTest">
+  <component name="RunManager" selected="JUnit.CuentaTest.testCuenta">
     <configuration name="CuentaTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Junit_app" />
       <extension name="coverage">
@@ -99,8 +100,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.CuentaTest" />
         <item itemvalue="JUnit.CuentaTest.testCuenta" />
+        <item itemvalue="JUnit.CuentaTest" />
       </list>
     </recent_temporary>
   </component>
