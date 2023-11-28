@@ -1,5 +1,8 @@
 package com.uduran.junit5app.ejemplos;
 
+import com.uduran.junit5app.ejemplos.exceptions.DineroInsuficienteException;
+import com.uduran.junit5app.ejemplos.models.Banco;
+import com.uduran.junit5app.ejemplos.models.Cuenta;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -45,6 +48,39 @@ class CuentaTest {
         assertNotNull(cuenta.getSaldo());
         assertEquals(1100, cuenta.getSaldo().intValue());
         assertEquals("1100.12345", cuenta.getSaldo().toPlainString());
+    }
+
+    @Test
+    void testDineroInsuficienteExceptionCuenta() {
+        Cuenta cuenta = new Cuenta("Ulises", new BigDecimal("1000.12345"));
+        Exception exception = assertThrows(DineroInsuficienteException.class, () -> {
+            cuenta.debito(new BigDecimal("1500"));
+        });
+        String actual = exception.getMessage();
+        String esperado = "Dinero Insuficiente";
+        assertEquals(actual, esperado);
+    }
+
+    @Test
+    void testTrasnferirDineroCuenta() {
+        Cuenta cuenta1 = new Cuenta("John Doe", new BigDecimal("2500"));
+        Cuenta cuenta2 = new Cuenta("Ulises", new BigDecimal("1500"));
+
+        Banco banco = new Banco("BBVA");
+        banco.transferir(cuenta2, cuenta1, new BigDecimal(1000));
+        assertEquals("500", cuenta2.getSaldo().toPlainString());
+        assertEquals("3500", cuenta1.getSaldo().toPlainString());
+    }
+
+    @Test
+    void testRelacionBancoCuenta() {
+        Cuenta cuenta1 = new Cuenta("John Doe", new BigDecimal("2500"));
+        Cuenta cuenta2 = new Cuenta("Ulises", new BigDecimal("1500"));
+
+        Banco banco = new Banco("BBVA");
+        banco.addCuenta(cuenta1);
+        banco.addCuenta(cuenta2);
+        assertEquals(2, banco.getCuentas().size());
     }
 
     @Test
