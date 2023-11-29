@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5d1d5fd8-1ad8-4d31-a592-a096a8edefb3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/uduran/junit5app/ejemplos/exceptions/DineroInsuficienteException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/uduran/junit5app/ejemplos/models/Banco.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/uduran/junit5app/ejemplos/Cuenta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/uduran/junit5app/ejemplos/models/Cuenta.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/uduran/junit5app/ejemplos/CuentaTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/uduran/junit5app/ejemplos/CuentaTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -70,7 +66,22 @@
       <recent name="com.uduran.junit5app.ejemplos" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CuentaTest.testCuenta">
+  <component name="RunManager" selected="JUnit.CuentaTest (1)">
+    <configuration name="CuentaTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Junit_app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.uduran.junit5app.ejemplos.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.uduran.junit5app.ejemplos" />
+      <option name="MAIN_CLASS_NAME" value="com.uduran.junit5app.ejemplos.CuentaTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="CuentaTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Junit_app" />
       <extension name="coverage">
@@ -81,7 +92,9 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.uduran.junit5app.ejemplos" />
       <option name="MAIN_CLASS_NAME" value="com.uduran.junit5app.ejemplos.CuentaTest" />
+      <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea -DENV=dev" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -102,10 +115,34 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="CuentaTest.testImprimirSystemProperties" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Junit_app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.uduran.junit5app.ejemplos.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.uduran.junit5app.ejemplos" />
+      <option name="MAIN_CLASS_NAME" value="com.uduran.junit5app.ejemplos.CuentaTest" />
+      <option name="METHOD_NAME" value="testImprimirSystemProperties" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JUnit.CuentaTest (1)" />
+      <item itemvalue="JUnit.CuentaTest" />
+      <item itemvalue="JUnit.CuentaTest.testCuenta" />
+      <item itemvalue="JUnit.CuentaTest.testImprimirSystemProperties" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.CuentaTest.testCuenta" />
+        <item itemvalue="JUnit.CuentaTest (1)" />
         <item itemvalue="JUnit.CuentaTest" />
+        <item itemvalue="JUnit.CuentaTest.testImprimirSystemProperties" />
+        <item itemvalue="JUnit.CuentaTest.testCuenta" />
       </list>
     </recent_temporary>
   </component>
