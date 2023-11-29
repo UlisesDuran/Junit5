@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5d1d5fd8-1ad8-4d31-a592-a096a8edefb3" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/uduran/junit5app/ejemplos/exceptions/DineroInsuficienteException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/uduran/junit5app/ejemplos/models/Banco.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/uduran/junit5app/ejemplos/Cuenta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/uduran/junit5app/ejemplos/Cuenta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/uduran/junit5app/ejemplos/Cuenta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/uduran/junit5app/ejemplos/models/Cuenta.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/uduran/junit5app/ejemplos/CuentaTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/uduran/junit5app/ejemplos/CuentaTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -20,8 +23,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -54,6 +57,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": ""
   }
@@ -71,7 +75,7 @@
       <module name="Junit_app" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.uduran.junit5app.ejemplos.*" />
+          <option name="PATTERN" value="com.uduran.junit5app.ejemplos.models.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -86,7 +90,7 @@
       <module name="Junit_app" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.uduran.junit5app.ejemplos.*" />
+          <option name="PATTERN" value="com.uduran.junit5app.ejemplos.models.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
