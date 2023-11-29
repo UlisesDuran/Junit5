@@ -1,5 +1,7 @@
 package com.uduran.junit5app.ejemplos.models;
 
+import com.uduran.junit5app.ejemplos.models.Cuenta;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
