@@ -5,11 +5,7 @@ import com.uduran.junit5app.ejemplos.models.Banco;
 import com.uduran.junit5app.ejemplos.models.Cuenta;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.condition.*;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvFileSource;
-import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.*;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -46,14 +42,8 @@ class CuentaTest {
         System.out.println("Finalizando el Test...");
     }
 
-    @Test
-    @DisplayName("Probando nombre de la cuenta ¿?")
-    void testCuenta() {
-        String esperado = "Ulises";
-        String real = cuenta.getPersona();
-        Assertions.assertEquals(esperado, real);
-    }
 
+    @Tag("sistemaOperativo")
     @Nested
     class SistemaOperativoTest{
         @Test
@@ -72,6 +62,7 @@ class CuentaTest {
         }
     }
 
+    @Tag("javaVersion")
     @Nested
     class JavaVersionTest{
         @Test
@@ -85,6 +76,7 @@ class CuentaTest {
         }
     }
 
+    @Tag("systemProperties")
     @Nested
     class SystemPropertiesTest{
         @Test
@@ -108,7 +100,7 @@ class CuentaTest {
         void testSoloEnDev(){
         }
     }
-
+    @Tag("envVars")
     @Nested
     class EnviroimentVarTest{
         @Test
@@ -118,8 +110,19 @@ class CuentaTest {
         }
     }
 
+    @Tag("banco")
     @Nested
     class CuentaNestedTest{
+
+        @Test
+        @DisplayName("Probando nombre de la cuenta ¿?")
+        void testNombreCuenta(TestInfo testInfo, TestReporter testReporter) {
+            System.out.println(" Ejecutando " + testInfo);
+            String esperado = "Ulises";
+            String real = cuenta.getPersona();
+            Assertions.assertEquals(esperado, real);
+        }
+
         @Test
         @DisplayName("Probando el saldo de la cuenta ¿?")
         void testSaldoCuenta() {
@@ -193,20 +196,22 @@ class CuentaTest {
                     () -> assertTrue(banco.getCuentas().stream()
                             .anyMatch(c -> c.getPersona().equals("Ulises"))));
         }
+
+        @Test
+        @DisplayName("Probando el saldo de la cuenta ¿?")
+        void testSaldoCuentaDev() {
+            boolean esDev = "dev".equals(System.getProperty("ENV"));
+            assumeTrue(esDev);
+            assertAll(
+                    () -> assertNotNull(cuenta.getSaldo()),
+                    () -> assertEquals(1000.12345, cuenta.getSaldo().doubleValue()),
+                    () -> assertFalse(cuenta.getSaldo().compareTo(BigDecimal.ZERO) < 0),
+                    () -> assertFalse(cuenta.getSaldo().compareTo(BigDecimal.ZERO) > 0));
+        }
+
     }
 
-    @Test
-    @DisplayName("Probando el saldo de la cuenta ¿?")
-    void testSaldoCuentaDev() {
-        boolean esDev = "dev".equals(System.getProperty("ENV"));
-        assumeTrue(esDev);
-        assertAll(
-                () -> assertNotNull(cuenta.getSaldo()),
-                () -> assertEquals(1000.12345, cuenta.getSaldo().doubleValue()),
-                () -> assertFalse(cuenta.getSaldo().compareTo(BigDecimal.ZERO) < 0),
-                () -> assertFalse(cuenta.getSaldo().compareTo(BigDecimal.ZERO) > 0));
-    }
-
+    @Tag("repeatedTest")
     @Nested
     class RepeatedCuentaTest{
         @DisplayName("Probando debito cuenta repetir.")
@@ -223,6 +228,8 @@ class CuentaTest {
         }
     }
 
+    // Este Tag se añade a todos los metodos.
+    @Tag("param")
     @Nested
     class ParameterizedCuentaTest{
         @ParameterizedTest(name = "numero {index} ejecutando con valor {0} - {argumentsWithNames}")
@@ -235,21 +242,29 @@ class CuentaTest {
         }
 
         @ParameterizedTest(name = "numero {index} ejecutando con valor {0} - {argumentsWithNames}")
-        @CsvSource({"1, 100", "2, 200", "3, 300", "4, 500", "5, 700", "6, 2000"})
-        void testCsvSource(String index, String monto) {
-            System.out.println(index + " -> " + monto);
+        @CsvSource({"200, 100, Jonh, Andres", "250, 200, Pepe, Pepe", "299, 300, maria, Maria", "510, 500, Ulises, Ulises", "750, 700, Estela, estela", "2000, 2000, Mariana, Mariana"})
+        void testCsvSource(String saldo, String monto, String esperado, String actual) {
+            System.out.println(saldo + " -> " + monto);
+            cuenta.setSaldo(new BigDecimal(saldo));
             cuenta.debito(new BigDecimal(monto));
+            cuenta.setPersona(actual);
             assertAll(
+                    () -> assertNotNull(cuenta.getPersona()),
+                    () -> assertEquals(esperado, actual),
                     () -> assertNotNull(cuenta.getSaldo()),
                     () -> assertTrue(cuenta.getSaldo().compareTo(BigDecimal.ZERO)>0));
         }
 
         @ParameterizedTest(name = "numero {index} ejecutando con valor {0} - {argumentsWithNames}")
         @CsvFileSource(resources = "/data.csv")
-        void testCsvFileSource(String monto) {
+        void testCsvFileSource(String saldo, String monto, String esperado, String actual) {
             System.out.println(monto);
+            cuenta.setSaldo(new BigDecimal(saldo));
             cuenta.debito(new BigDecimal(monto));
+            cuenta.setPersona(actual);
             assertAll(
+                    () -> assertNotNull(cuenta.getPersona()),
+                    () -> assertEquals(esperado, actual),
                     () -> assertNotNull(cuenta.getSaldo()),
                     () -> assertTrue(cuenta.getSaldo().compareTo(BigDecimal.ZERO)>0));
         }
