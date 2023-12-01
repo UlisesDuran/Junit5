@@ -5,11 +5,13 @@ import com.uduran.junit5app.ejemplos.models.Banco;
 import com.uduran.junit5app.ejemplos.models.Cuenta;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.condition.*;
+import org.w3c.dom.ls.LSOutput;
 
 import java.math.BigDecimal;
 import java.util.Properties;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assumptions.*;
 
 //@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class CuentaTest {
@@ -36,6 +38,53 @@ class CuentaTest {
     static void afterAll() {
         System.out.println("Finalizando el Test...");
     }
+
+    @Nested
+    class SistemaOperativoTest{
+        @Test
+        @EnabledOnOs(OS.WINDOWS)
+        void testSoloWindows(){
+        }
+
+        @Test
+        @EnabledOnOs({OS.MAC, OS.LINUX})
+        void testSoloLinuxMac(){
+        }
+
+        @Test
+        @DisabledOnOs(OS.WINDOWS)
+        void testNoWindows(){
+        }
+    }
+    @Nested
+    class JavaVersionTest{
+
+        @Test
+        @EnabledOnJre(JRE.JAVA_8)
+        void testSoloJdk8(){
+        }
+        @Test
+        @EnabledOnJre(JRE.JAVA_21)
+        void testSoloJdk21(){
+        }
+    }
+    @Nested
+    class SystemPropertiesTest{
+        @Test
+        void testImprimirSystemProperties(){
+            Properties properties = System.getProperties();
+            properties.forEach((k, v) -> System.out.println(k + ": " + v));
+        }
+        @Test
+        @EnabledIfSystemProperty(named = "java.version", matches = "19.0.2")
+        void testSoloJdk19(){
+        }
+        @Test
+        @EnabledIfSystemProperty(named = "ENV", matches = "dev")
+        void testSoloEnDev(){
+        }
+    }
+
 
     @Test
     @DisplayName("Probando nombre de la cuenta ¿?")
@@ -120,45 +169,21 @@ class CuentaTest {
     }
 
     @Test
-    @EnabledOnOs(OS.WINDOWS)
-    void testSoloWindows(){
+    @DisplayName("test saldo cuenta dev")
+    void testSaldoCuentaDev() {
+        boolean esDev = "dev".equals(System.getProperty("ENV"));
+        assumeTrue(esDev);
+        assumingThat(esDev, ()->{
+            assertAll(
+                    () -> System.out.println("Estoy aqui"),
+                    () -> assertNotNull(cuenta.getSaldo()),
+                    () -> assertEquals(1000.12345, cuenta.getSaldo().doubleValue()),
+                    () -> assertFalse(cuenta.getSaldo().compareTo(BigDecimal.ZERO) < 0));
+        });
     }
 
-    @Test
-    @EnabledOnOs({OS.MAC, OS.LINUX})
-    void testSoloLinuxMac(){
-    }
 
-    @Test
-    @DisabledOnOs(OS.WINDOWS)
-    void testNoWindows(){
-    }
 
-    @Test
-    @EnabledOnJre(JRE.JAVA_8)
-    void testSoloJdk8(){
-    }
-
-    @Test
-    @EnabledOnJre(JRE.JAVA_21)
-    void testSoloJdk21(){
-    }
-
-    @Test
-    void testImprimirSystemProperties(){
-        Properties properties = System.getProperties();
-        properties.forEach((k, v) -> System.out.println(k + ": " + v));
-    }
-
-    @Test
-    @EnabledIfSystemProperty(named = "java.version", matches = "19.0.2")
-    void testSoloJdk19(){
-    }
-
-    @Test
-    @EnabledIfSystemProperty(named = "DEV", matches = "dev")
-    void testSoloEnDev(){
-    }
 
     @Test
     void getPersona() {
